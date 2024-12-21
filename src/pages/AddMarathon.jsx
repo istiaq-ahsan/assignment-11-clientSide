@@ -1,10 +1,48 @@
+import { useContext, useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css'
+import { AuthContext } from '../provider/AuthProvider';
+
 
 const AddMarathon = () => {
 
+    const { user } = useContext(AuthContext);
+
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const [marathonDate, setMarathonDate] = useState(new Date());
+
     const handleAddMarathon = e => {
         e.preventDefault();
-    }
 
+        const form = e.target
+        const email = form.email.value
+        const title = form.title.value
+        const startRegistration = startDate
+        const endRegistration = endDate
+        const marathonStartDate = marathonDate
+        const location = form.location.value
+        const distance = form.distance.value
+        const description = form.description.value
+        const image = form.image.value
+
+        const formData = {
+            title,
+            creator: {
+                email,
+                name: user?.displayName,
+                photo: user?.photoURL,
+            },
+            startRegistration,
+            endRegistration,
+            marathonStartDate,
+            location,
+            distance,
+            description,
+            image
+        }
+        console.log(formData);
+    }
     return (
         <div>
             <div className="w-11/12 md:w-4/5 mx-auto">
@@ -17,6 +55,21 @@ const AddMarathon = () => {
                 <div className="card bg-base-100 w-full shrink-0 shadow-2xl">
                     <form onSubmit={handleAddMarathon} className="card-body">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            {/* user email */}
+                            <div className="form-control flex-1">
+                                <label className="label">
+                                    <span className="label-text">User Email</span>
+                                </label>
+                                <input
+                                    type='email'
+                                    name="email"
+                                    defaultValue={user?.email}
+                                    readOnly
+                                    className="input input-bordered"
+                                    required
+                                />
+                            </div>
+
                             {/* Marathon Title */}
                             <div className="form-control flex-1">
                                 <label className="label">
@@ -36,11 +89,12 @@ const AddMarathon = () => {
                                 <label className="label">
                                     <span className="label-text">Start Registration Date</span>
                                 </label>
-                                <input
-                                    type="date"
-                                    name="startRegistration"
-                                    className="input input-bordered"
-                                    required
+                                <DatePicker
+                                    className="input input-bordered w-full"
+                                    selected={startDate}
+                                    onChange={date => setStartDate(date)}
+
+
                                 />
                             </div>
 
@@ -49,11 +103,11 @@ const AddMarathon = () => {
                                 <label className="label">
                                     <span className="label-text">End Registration Date</span>
                                 </label>
-                                <input
-                                    type="date"
-                                    name="endRegistration"
-                                    className="input input-bordered"
-                                    required
+                                <DatePicker
+                                    className="input input-bordered w-full"
+                                    selected={endDate}
+                                    onChange={(date) => setEndDate(date)}
+
                                 />
                             </div>
 
@@ -62,11 +116,11 @@ const AddMarathon = () => {
                                 <label className="label">
                                     <span className="label-text">Marathon Start Date</span>
                                 </label>
-                                <input
-                                    type="date"
-                                    name="startDate"
-                                    className="input input-bordered"
-                                    required
+                                <DatePicker
+                                    className="input input-bordered w-full"
+                                    selected={marathonDate}
+                                    onChange={(date) => setMarathonDate(date)}
+
                                 />
                             </div>
 
