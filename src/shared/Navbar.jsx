@@ -7,7 +7,7 @@ const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
 
     return (
-        <div className='navbar bg-base-100 shadow-sm  px-4'>
+        <div className='navbar fixed top-0 z-50 bg-base-100 shadow-sm  px-4'>
             <div className='flex-1'>
                 <Link to='/' className='flex gap-2 items-center'>
                     <img className='w-auto h-7' src="" alt='' />

@@ -2,6 +2,8 @@ import { useContext, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
 import { AuthContext } from '../provider/AuthProvider';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 
 const AddMarathon = () => {
@@ -12,7 +14,7 @@ const AddMarathon = () => {
     const [endDate, setEndDate] = useState(new Date());
     const [marathonDate, setMarathonDate] = useState(new Date());
 
-    const handleAddMarathon = e => {
+    const handleAddMarathon = async (e) => {
         e.preventDefault();
 
         const form = e.target
@@ -42,6 +44,13 @@ const AddMarathon = () => {
             image
         }
         console.log(formData);
+        try {
+            await axios.post(`${import.meta.env.VITE_API_URL}/add-marathon`, formData)
+            toast.success("Marathon Added Successfully");
+        } catch (err) {
+            console.log(err.message);
+            toast.error(err.message);
+        }
     }
     return (
         <div>
