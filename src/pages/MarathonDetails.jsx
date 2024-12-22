@@ -1,12 +1,14 @@
 import axios from "axios";
-import { format } from "date-fns";
+import { compareAsc, format } from "date-fns";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const MarathonDetails = () => {
 
     const { id } = useParams();
     const [marathon, setMarathon] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchMarathonDetails()
@@ -14,6 +16,7 @@ const MarathonDetails = () => {
     }, [id])
 
     const { title,
+        _id,
         startRegistration,
         endRegistration,
         marathonStartDate,
@@ -27,6 +30,16 @@ const MarathonDetails = () => {
         const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/marathon-details/${id}`)
         setMarathon(data);
         console.log(marathon);
+    }
+
+    const handleGoReg = () => {
+        if (compareAsc(new Date(), new Date(endRegistration)) === 1) {
+            return toast.error("Registration Deadline is Over");
+        }
+        else {
+            navigate(`/marathonReg/${_id}`)
+        }
+
     }
 
     return (
@@ -51,7 +64,7 @@ const MarathonDetails = () => {
                         <p className="py-6">
                             {description}
                         </p>
-                        <button className="btn btn-neutral">Registration</button>
+                        <button onClick={handleGoReg} className="btn btn-neutral">Registration</button >
                     </div>
                 </div>
             </div>

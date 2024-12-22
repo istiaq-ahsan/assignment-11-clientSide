@@ -4,12 +4,13 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { AuthContext } from '../provider/AuthProvider';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 
 const AddMarathon = () => {
 
     const { user } = useContext(AuthContext);
-
+    const navigate = useNavigate();
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [marathonDate, setMarathonDate] = useState(new Date());
@@ -47,6 +48,7 @@ const AddMarathon = () => {
         try {
             await axios.post(`${import.meta.env.VITE_API_URL}/add-marathon`, formData)
             toast.success("Marathon Added Successfully");
+            navigate("/myMarathonList");
         } catch (err) {
             console.log(err.message);
             toast.error(err.message);
