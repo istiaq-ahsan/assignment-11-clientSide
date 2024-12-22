@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import axios from "axios";
 import ApplyListTable from "../components/ApplyListTable";
+import { toast } from "react-toastify";
 
 const MyApplyList = () => {
 
@@ -19,6 +20,16 @@ const MyApplyList = () => {
         console.log(applyList);
     }
 
+    const handleDelete = async (id) => {
+        console.log(id);
+        try {
+            const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/applyInfo/${id}`)
+            toast.success("Deleted Successfully")
+            fetchMyApplyList();
+        } catch (err) {
+            console.log(err.message);
+        }
+    }
 
     return (
         <section className='container px-4 mx-auto pt-12'>
@@ -85,7 +96,11 @@ const MyApplyList = () => {
                                 </thead>
                                 <tbody className='bg-white divide-y divide-gray-200 '>
                                     {
-                                        applyList.map((apply, index) => <ApplyListTable key={index} apply={apply}></ApplyListTable>)
+                                        applyList.map((apply, index) => <ApplyListTable
+                                            key={index}
+                                            apply={apply}
+                                            handleDelete={handleDelete}
+                                        ></ApplyListTable>)
                                     }
                                 </tbody>
                             </table>

@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 
-const ApplyListTable = ({ apply }) => {
-    const { title, marathonStartDate, firstName, lastName, contact } = apply || {}
+const ApplyListTable = ({ apply, handleDelete }) => {
+    const { _id, marathonId, title, marathonStartDate, firstName, lastName, contact } = apply || {}
+
 
     return (
         <tr>
@@ -24,7 +26,7 @@ const ApplyListTable = ({ apply }) => {
                 {contact}
             </td>
             <td className='px-4 py-4 text-sm whitespace-nowrap'>
-                <Link to="/updateApplyInfo"
+                <Link to={`/updateApplyInfo/${_id}`}
 
                     className='text-gray-500 transition-colors duration-200   hover:text-yellow-500 focus:outline-none'
                 >
@@ -46,7 +48,7 @@ const ApplyListTable = ({ apply }) => {
             </td>
             <td className='px-4 py-4 text-sm whitespace-nowrap'>
 
-                <button className='text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none'>
+                <button onClick={() => handleDelete(_id)} className='text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none'>
                     <svg
                         xmlns='http://www.w3.org/2000/svg'
                         fill='none'

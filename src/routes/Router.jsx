@@ -63,7 +63,7 @@ const Router = createBrowserRouter([
                 </PrivateRouter>
             },
             {
-                path: "/updateApplyInfo",
+                path: "/updateApplyInfo/:id",
                 element: <PrivateRouter>
                     <UpdateApplyInfo></UpdateApplyInfo>
                 </PrivateRouter>

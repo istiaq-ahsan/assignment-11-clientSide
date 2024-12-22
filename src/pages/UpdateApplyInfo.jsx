@@ -1,26 +1,49 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../provider/AuthProvider";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 
 const UpdateApplyInfo = () => {
 
     const { user } = useContext(AuthContext);
+    const { id } = useParams();
+    const [applyInfo, setApplyInfo] = useState({});
     const navigate = useNavigate();
+
+    useEffect(() => {
+        fetchApplyInfo()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id])
+
+    const { title,
+
+        marathonStartDate,
+        firstName,
+        lastName,
+        contact,
+        additionalInfo
+
+    } = applyInfo || {}
+
+    const fetchApplyInfo = async () => {
+        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/applyInfo/${id}`)
+        setApplyInfo(data);
+        console.log(applyInfo);
+    }
 
     const handleUpdateMarathon = async (e) => {
         e.preventDefault();
 
         const form = e.target
-        const email = form.email.value
-        const title = form.title.value
+        const email = form.email?.value
+        const title = form.title?.value
 
-        const firstName = form.firstName.value
-        const lastName = form.lastName.value
-        const contact = form.contact.value
-        const additionalInfo = form.additionalInfo.value
+        const firstName = form.firstName?.value
+        const lastName = form.lastName?.value
+        const contact = form.contact?.value
+        const additionalInfo = form.additionalInfo?.value
 
 
 
@@ -38,8 +61,8 @@ const UpdateApplyInfo = () => {
         console.log(formData);
 
         try {
-            await axios.put(`${import.meta.env.VITE_API_URL}/update-info`, formData)
-            toast.success("Marathon Added Successfully");
+            await axios.put(`${import.meta.env.VITE_API_URL}/update-applyInfo/${id}`, formData)
+            toast.success("Update Information Successfully");
             navigate("/myApplyList");
         } catch (err) {
             console.log(err.message);
@@ -68,8 +91,8 @@ const UpdateApplyInfo = () => {
                                 <input
                                     type="text"
                                     name="title"
-
-
+                                    defaultValue={title}
+                                    readOnly
                                     className="input input-bordered"
                                     required
                                 />
@@ -83,13 +106,13 @@ const UpdateApplyInfo = () => {
                                 </label>
                                 <DatePicker
                                     className="input input-bordered w-full"
-
+                                    selected={marathonStartDate}
                                     readOnly
 
                                 />
                             </div>
 
-                            {/* Location */}
+                            {/* First Name */}
                             <div className="form-control flex-1">
                                 <label className="label">
                                     <span className="label-text">First Name</span>
@@ -97,13 +120,14 @@ const UpdateApplyInfo = () => {
                                 <input
                                     type="text"
                                     name="firstName"
+                                    defaultValue={firstName}
                                     placeholder="Enter location"
                                     className="input input-bordered"
                                     required
                                 />
                             </div>
 
-                            {/* Running Distance */}
+                            {/* Last Name */}
                             <div className="form-control flex-1">
                                 <label className="label">
                                     <span className="label-text">Last Name</span>
@@ -111,6 +135,7 @@ const UpdateApplyInfo = () => {
                                 <input
                                     type="text"
                                     name="lastName"
+                                    defaultValue={lastName}
                                     placeholder="Enter location"
                                     className="input input-bordered"
                                     required
@@ -124,6 +149,7 @@ const UpdateApplyInfo = () => {
                                 <input
                                     type="number"
                                     name="contact"
+                                    defaultValue={contact}
                                     placeholder="Enter Contact Number"
                                     className="input input-bordered"
                                     required
@@ -154,6 +180,7 @@ const UpdateApplyInfo = () => {
                             </label>
                             <textarea
                                 name="additionalInfo"
+                                defaultValue={additionalInfo}
                                 placeholder="Provide a detailed information"
                                 className="textarea textarea-bordered"
                                 required
@@ -163,7 +190,7 @@ const UpdateApplyInfo = () => {
 
                         {/* Submit Button */}
                         <div className="form-control mt-6">
-                            <button className="btn btn-neutral">Update</button>
+                            <button onClick={() => handleUpdateMarathon()} className="btn btn-neutral">Update</button>
                         </div>
                     </form>
                 </div>
