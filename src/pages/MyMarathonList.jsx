@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
-import { format } from "date-fns";
 import MarathonListTable from "../components/MarathonListTable";
 
 
@@ -10,23 +8,11 @@ const MyMarathonList = () => {
 
     const { user } = useContext(AuthContext);
     const [marathonsList, setMarathonsList] = useState([]);
-    const navigate = useNavigate();
 
     useEffect(() => {
         fetchMyMarathonsList()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    const { title,
-        _id,
-        startRegistration,
-        endRegistration,
-        marathonStartDate,
-        location,
-        distance,
-        description,
-        image
-    } = marathonsList || {}
 
     const fetchMyMarathonsList = async () => {
         const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/my-marathons/${user?.email}`)

@@ -10,6 +10,7 @@ import AllMarathons from "../pages/AllMarathons";
 import PrivateRouter from "./PrivateRouter";
 import MarathonDetails from "../pages/MarathonDetails";
 import MarathonReg from "../pages/MarathonReg";
+import UpdateApplyInfo from "../pages/UpdateApplyInfo";
 
 
 const Router = createBrowserRouter([
@@ -57,7 +58,15 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/myApplyList",
-                element: <MyApplyList></MyApplyList>
+                element: <PrivateRouter>
+                    <MyApplyList></MyApplyList>
+                </PrivateRouter>
+            },
+            {
+                path: "/updateApplyInfo",
+                element: <PrivateRouter>
+                    <UpdateApplyInfo></UpdateApplyInfo>
+                </PrivateRouter>
             }
         ]
     }

@@ -1,33 +1,16 @@
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useContext } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../provider/AuthProvider";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 
-const MarathonReg = () => {
+const UpdateApplyInfo = () => {
+
     const { user } = useContext(AuthContext);
-    const [MarathonInfo, setMarathonInfo] = useState({});
-    const { id } = useParams();
     const navigate = useNavigate();
-    useEffect(() => {
-        fetchMarathonInfo()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [id])
 
-    const fetchMarathonInfo = async () => {
-        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/marathon-details/${id}`)
-        setMarathonInfo(data);
-        console.log(MarathonInfo);
-    }
-
-    const { title,
-        _id,
-        marathonStartDate,
-        creator,
-    } = MarathonInfo || {}
-
-    const handleAddMarathon = async (e) => {
+    const handleUpdateMarathon = async (e) => {
         e.preventDefault();
 
         const form = e.target
@@ -38,26 +21,24 @@ const MarathonReg = () => {
         const lastName = form.lastName.value
         const contact = form.contact.value
         const additionalInfo = form.additionalInfo.value
-        const marathonId = _id
 
-        if (user.email === creator?.email) {
-            return toast.error("Action not permitted")
-        }
+
+
 
         const formData = {
-            marathonId,
+
             title,
             email,
             firstName,
             lastName,
             contact,
             additionalInfo,
-            marathonStartDate,
-            organizer: creator?.email,
         }
+
         console.log(formData);
+
         try {
-            await axios.post(`${import.meta.env.VITE_API_URL}/marathon-reg`, formData)
+            await axios.put(`${import.meta.env.VITE_API_URL}/update-info`, formData)
             toast.success("Marathon Added Successfully");
             navigate("/myApplyList");
         } catch (err) {
@@ -70,13 +51,13 @@ const MarathonReg = () => {
         <div>
             <div className="w-11/12 md:w-4/5 mx-auto">
                 <div className="text-center text-gray-900">
-                    <h1 className="text-5xl font-bold">{title} Registration Form</h1>
+                    <h1 className="text-5xl font-bold"> Update Form</h1>
                     <p className="text-base my-5">
                         Provide the details of your marathon to share it with participants. Fill in all fields to ensure clarity and accuracy.
                     </p>
                 </div>
                 <div className="card bg-base-100 w-full shrink-0 shadow-2xl">
-                    <form onSubmit={handleAddMarathon} className="card-body">
+                    <form onSubmit={handleUpdateMarathon} className="card-body">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
                             {/* Marathon Title */}
@@ -87,8 +68,8 @@ const MarathonReg = () => {
                                 <input
                                     type="text"
                                     name="title"
-                                    defaultValue={title}
-                                    readOnly
+
+
                                     className="input input-bordered"
                                     required
                                 />
@@ -102,7 +83,7 @@ const MarathonReg = () => {
                                 </label>
                                 <DatePicker
                                     className="input input-bordered w-full"
-                                    selected={marathonStartDate}
+
                                     readOnly
 
                                 />
@@ -182,7 +163,7 @@ const MarathonReg = () => {
 
                         {/* Submit Button */}
                         <div className="form-control mt-6">
-                            <button className="btn btn-neutral">Registration</button>
+                            <button className="btn btn-neutral">Update</button>
                         </div>
                     </form>
                 </div>
@@ -191,4 +172,4 @@ const MarathonReg = () => {
     );
 };
 
-export default MarathonReg;
+export default UpdateApplyInfo;

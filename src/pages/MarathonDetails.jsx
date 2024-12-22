@@ -1,7 +1,7 @@
 import axios from "axios";
 import { compareAsc, format } from "date-fns";
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const MarathonDetails = () => {
