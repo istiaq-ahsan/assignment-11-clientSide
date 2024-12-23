@@ -8,6 +8,8 @@ const MyApplyList = () => {
 
     const { user } = useContext(AuthContext);
     const [applyList, setApplyList] = useState([]);
+    const [search, setSearch] = useState('');
+
 
     useEffect(() => {
         fetchMyApplyList()
@@ -33,82 +35,67 @@ const MyApplyList = () => {
 
     return (
         <section className='container px-4 mx-auto pt-12'>
-            <div className='flex items-center gap-x-3'>
-                <h2 className='text-lg font-medium text-gray-800 '>My Applied Marathon</h2>
-
-                <span className='px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full '>
-                    {applyList.length}
-                </span>
-            </div>
-
-            <div className='flex flex-col mt-6'>
-                <div className='-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
-                    <div className='inline-block min-w-full py-2 align-middle md:px-6 lg:px-8'>
-                        <div className='overflow-hidden border border-gray-200  md:rounded-lg'>
-                            <table className='min-w-full divide-y divide-gray-200'>
-                                <thead className='bg-gray-50'>
-                                    <tr>
-                                        <th
-                                            scope='col'
-                                            className='py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500'
-                                        >
-                                            <div className='flex items-center gap-x-3'>
-                                                <span>Title</span>
-                                            </div>
-                                        </th>
-
-                                        <th
-                                            scope='col'
-                                            className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'
-                                        >
-                                            <span>Marathon Start</span>
-                                        </th>
-
-                                        <th
-                                            scope='col'
-                                            className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'
-                                        >
-                                            <span>First Name</span>
-                                        </th>
-
-                                        <th
-                                            scope='col'
-                                            className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'
-                                        >
-                                            <span>Last Name</span>
-                                        </th>
-                                        <th
-                                            scope='col'
-                                            className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'
-                                        >
-                                            <span>Contact</span>
-                                        </th>
+            <div className="flex justify-between">
+                <div className='flex items-center gap-x-3'>
+                    <h2 className='text-lg font-medium text-gray-800 '>
+                        My Applied Marathon<span className='px-4 py-2 text-xs ml-3 text-blue-600 bg-blue-100 rounded-full '>
+                            {applyList.length}
+                        </span></h2>
+                </div>
 
 
-                                        <th className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'>
-                                            Edit
-                                        </th>
+                <div className='flex flex-col md:flex-row justify-center items-center gap-5 '>
 
-                                        <th className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'>
-                                            Delete
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody className='bg-white divide-y divide-gray-200 '>
-                                    {
-                                        applyList.map((apply, index) => <ApplyListTable
-                                            key={index}
-                                            apply={apply}
-                                            handleDelete={handleDelete}
-                                        ></ApplyListTable>)
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
+                    <div className='flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300'>
+                        <input
+                            className='px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent'
+                            type='text'
+                            name='search'
+                            onChange={e => setSearch(e.target.value)}
+                            value={search}
+                            placeholder='Enter Marathon Title'
+                            aria-label='Enter Marathon Title'
+                        />
+
+                        <button className='p-2 text-xs font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'>
+                            Search
+                        </button>
                     </div>
+                    <button className='btn'>Reset</button>
                 </div>
             </div>
-        </section>
+
+            <div className="py-10 mx-3">
+                <div className="overflow-x-auto">
+                    <table className="table w-11/12 mx-auto border-collapse bg-white shadow-lg">
+                        <thead className="bg-gray-700 text-white">
+                            <tr className="text-center">
+                                <th className="px-4 py-3 text-sm font-semibold">Title</th>
+                                <th className="px-4 py-3 text-sm font-semibold">Marathon Start</th>
+                                <th className="px-4 py-3 text-sm font-semibold">First Name</th>
+                                <th className="px-4 py-3 text-sm font-semibold">Last Name</th>
+                                <th className="px-4 py-3 text-sm font-semibold">Contact</th>
+                                <th className="px-4 py-3 text-sm font-semibold">Update</th>
+                                <th className="px-4 py-3 text-sm font-semibold">Delete</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {
+                                applyList.map((apply, index) => <ApplyListTable
+                                    key={index}
+                                    apply={apply}
+                                    handleDelete={handleDelete}
+                                ></ApplyListTable>)
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section >
     );
 };
 

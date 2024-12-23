@@ -7,28 +7,28 @@ const ApplyListTable = ({ apply, handleDelete }) => {
 
 
     return (
-        <tr>
-            <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
+        <tr className="text-center text-gray-500">
+            <td className='px-4 py-4  '>
                 {title}
             </td>
 
-            <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
-                {marathonStartDate ? format(new Date(marathonStartDate), "P") : "TBA"}
+            <td className='px-4 py-4'>
+                {format(new Date(marathonStartDate), 'P')}
             </td>
 
-            <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
+            <td className='px-4 py-4'>
                 {firstName}
             </td>
-            <td className='px-4 py-4 text-sm whitespace-nowrap'>
+            <td className='px-4 py-4'>
                 {lastName}
             </td>
-            <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
+            <td className='px-4 py-4'>
                 {contact}
             </td>
-            <td className='px-4 py-4 text-sm whitespace-nowrap'>
+            <td className='px-4 py-4'>
                 <Link to={`/updateApplyInfo/${_id}`}
 
-                    className='text-gray-500 transition-colors duration-200   hover:text-yellow-500 focus:outline-none'
+                    className='text-gray-500 flex justify-center transition-colors duration-200   hover:text-yellow-500 focus:outline-none'
                 >
                     <svg
                         xmlns='http://www.w3.org/2000/svg'
@@ -46,7 +46,7 @@ const ApplyListTable = ({ apply, handleDelete }) => {
                     </svg>
                 </Link>
             </td>
-            <td className='px-4 py-4 text-sm whitespace-nowrap'>
+            <td className='px-4 py-4'>
 
                 <button onClick={() => handleDelete(_id)} className='text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none'>
                     <svg

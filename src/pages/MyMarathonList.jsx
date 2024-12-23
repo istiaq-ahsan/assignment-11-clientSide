@@ -9,6 +9,7 @@ const MyMarathonList = () => {
 
     const { user } = useContext(AuthContext);
     const [marathonsList, setMarathonsList] = useState([]);
+    const [sort, setSort] = useState('');
 
     useEffect(() => {
         fetchMyMarathonsList()
@@ -36,81 +37,60 @@ const MyMarathonList = () => {
 
     return (
         <section className='container px-4 mx-auto pt-12'>
-            <div className='flex items-center gap-x-3'>
-                <h2 className='text-lg font-medium text-gray-800 '>My Posted Jobs</h2>
+            <div className="flex justify-between">
+                <div className='flex items-center gap-x-3'>
+                    <h2 className='text-lg font-medium text-gray-800 '>My Posted Jobs
 
-                <span className='px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full '>
-                    {marathonsList.length}
-                </span>
-            </div>
-
-            <div className='flex flex-col mt-6'>
-                <div className='-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
-                    <div className='inline-block min-w-full py-2 align-middle md:px-6 lg:px-8'>
-                        <div className='overflow-hidden border border-gray-200  md:rounded-lg'>
-                            <table className='min-w-full divide-y divide-gray-200'>
-                                <thead className='bg-gray-50'>
-                                    <tr>
-                                        <th
-                                            scope='col'
-                                            className='py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500'
-                                        >
-                                            <div className='flex items-center gap-x-3'>
-                                                <span>Title</span>
-                                            </div>
-                                        </th>
-
-                                        <th
-                                            scope='col'
-                                            className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'
-                                        >
-                                            <span>Marathon Start</span>
-                                        </th>
-
-                                        <th
-                                            scope='col'
-                                            className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'
-                                        >
-                                            <button className='flex items-center gap-x-2'>
-                                                <span>Location</span>
-                                            </button>
-                                        </th>
-
-                                        <th
-                                            scope='col'
-                                            className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'
-                                        >
-                                            Distance
-                                        </th>
-                                        <th
-                                            scope='col'
-                                            className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'
-                                        >Description
-                                        </th>
-
-                                        <th className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'>
-                                            Edit
-                                        </th>
-
-                                        <th className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'>
-                                            Delete
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody className='bg-white divide-y divide-gray-200 '>
-                                    {
-                                        marathonsList.map((marathon, index) => <MarathonListTable
-                                            key={index}
-                                            marathon={marathon}
-                                            handleDelete={handleDelete}
-                                        ></MarathonListTable>)
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                        <span className='px-3 py-1 ml-2 text-xs text-blue-600 bg-blue-100 rounded-full '>
+                            {marathonsList.length}
+                        </span></h2>
+                </div>
+                <div>
+                    <select
+                        name='category'
+                        id='category'
+                        onChange={(e) => setSort(e.target.value)}
+                        value={sort}
+                        className='py-3 px-2 border rounded-md'
+                    >
+                        <option value=''>Sort By Deadline</option>
+                        <option value='dsc'>Descending Order</option>
+                        <option value='asc'>Ascending Order</option>
+                    </select>
                 </div>
             </div>
+
+            <div className="py-10 mx-3">
+                <div className="overflow-x-auto">
+                    <table className="table w-11/12 mx-auto border-collapse bg-white shadow-lg">
+                        <thead className="bg-gray-700 text-white">
+                            <tr className="text-center">
+                                <th className="px-4 py-3 text-sm font-semibold">Title</th>
+                                <th className="px-4 py-3 text-sm font-semibold">Marathon Start</th>
+                                <th className="px-4 py-3 text-sm font-semibold">Location</th>
+                                <th className="px-4 py-3 text-sm font-semibold">Distance</th>
+                                <th className="px-4 py-3 text-sm font-semibold">Description</th>
+                                <th className="px-4 py-3 text-sm font-semibold">Update</th>
+                                <th className="px-4 py-3 text-sm font-semibold">Delete</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {
+                                marathonsList.map((marathon, index) => <MarathonListTable
+                                    key={index}
+                                    marathon={marathon}
+                                    handleDelete={handleDelete}
+                                ></MarathonListTable>)
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
         </section>
     );
 };

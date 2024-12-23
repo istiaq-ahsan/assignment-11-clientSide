@@ -24,6 +24,7 @@ const AddMarathon = () => {
         const startRegistration = startDate
         const endRegistration = endDate
         const marathonStartDate = marathonDate
+        const createdAt = form.createdAt.value
         const location = form.location.value
         const distance = form.distance.value
         const description = form.description.value
@@ -39,6 +40,7 @@ const AddMarathon = () => {
             startRegistration,
             endRegistration,
             marathonStartDate,
+            createdAt,
             location,
             distance,
             description,
@@ -131,6 +133,19 @@ const AddMarathon = () => {
                                     className="input input-bordered w-full"
                                     selected={marathonDate}
                                     onChange={(date) => setMarathonDate(date)}
+
+                                />
+                            </div>
+
+                            <div className="form-control flex-1">
+                                <label className="label">
+                                    <span className="label-text">Created At</span>
+                                </label>
+                                <DatePicker
+                                    className="input input-bordered w-full"
+                                    name='createdAt'
+                                    selected={new Date()}
+                                    readOnly
 
                                 />
                             </div>

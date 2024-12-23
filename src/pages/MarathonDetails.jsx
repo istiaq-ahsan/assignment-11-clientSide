@@ -45,7 +45,7 @@ const MarathonDetails = () => {
     return (
         <div>
             <div className="hero bg-base-200 border border-gray-500">
-                <div className="hero-content flex-col lg:flex-row">
+                <div className="hero-content flex-col lg:flex-row gap-5">
                     <div className="lg:w-1/2 border border-gray-500">
                         <img
                             src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
@@ -61,9 +61,11 @@ const MarathonDetails = () => {
                         </h2>
                         <h3>Location: {location}</h3>
                         <h3>Distance: {distance}</h3>
+
                         <p className="py-6">
                             {description}
                         </p>
+                        <h2>Total Registration Count : </h2>
                         <button onClick={handleGoReg} className="btn btn-neutral">Registration</button >
                     </div>
                 </div>
