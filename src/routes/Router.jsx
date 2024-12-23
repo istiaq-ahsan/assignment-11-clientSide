@@ -11,6 +11,7 @@ import PrivateRouter from "./PrivateRouter";
 import MarathonDetails from "../pages/MarathonDetails";
 import MarathonReg from "../pages/MarathonReg";
 import UpdateApplyInfo from "../pages/UpdateApplyInfo";
+import UpdatePostedMarathon from "../pages/UpdatePostedMarathon";
 
 
 const Router = createBrowserRouter([
@@ -67,7 +68,13 @@ const Router = createBrowserRouter([
                 element: <PrivateRouter>
                     <UpdateApplyInfo></UpdateApplyInfo>
                 </PrivateRouter>
-            }
+            },
+            {
+                path: "/updateMarathonInfo/:id",
+                element: <PrivateRouter>
+                    <UpdatePostedMarathon></UpdatePostedMarathon>
+                </PrivateRouter>
+            },
         ]
     }
 ])

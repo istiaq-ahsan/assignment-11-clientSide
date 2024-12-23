@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import MarathonListTable from "../components/MarathonListTable";
+import { toast } from "react-toastify";
 
 
 const MyMarathonList = () => {
@@ -18,6 +19,17 @@ const MyMarathonList = () => {
         const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/my-marathons/${user?.email}`)
         setMarathonsList(data);
         console.log(marathonsList);
+    }
+
+    const handleDelete = async (id) => {
+        console.log(id);
+        try {
+            const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/postedMarathon/${id}`)
+            toast.success("Deleted Successfully")
+            fetchMyMarathonsList();
+        } catch (err) {
+            console.log(err.message);
+        }
     }
 
 
@@ -87,7 +99,11 @@ const MyMarathonList = () => {
                                 </thead>
                                 <tbody className='bg-white divide-y divide-gray-200 '>
                                     {
-                                        marathonsList.map((marathon, index) => <MarathonListTable key={index} marathon={marathon}></MarathonListTable>)
+                                        marathonsList.map((marathon, index) => <MarathonListTable
+                                            key={index}
+                                            marathon={marathon}
+                                            handleDelete={handleDelete}
+                                        ></MarathonListTable>)
                                     }
                                 </tbody>
                             </table>
