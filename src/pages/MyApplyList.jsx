@@ -14,10 +14,10 @@ const MyApplyList = () => {
     useEffect(() => {
         fetchMyApplyList()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [search, user])
 
     const fetchMyApplyList = async () => {
-        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/my-apply/${user?.email}`)
+        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/my-apply/${user?.email}?search=${search}`)
         setApplyList(data);
         console.log(applyList);
     }
@@ -61,7 +61,6 @@ const MyApplyList = () => {
                             Search
                         </button>
                     </div>
-                    <button className='btn'>Reset</button>
                 </div>
             </div>
 

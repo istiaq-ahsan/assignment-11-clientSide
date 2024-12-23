@@ -14,10 +14,10 @@ const MyMarathonList = () => {
     useEffect(() => {
         fetchMyMarathonsList()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [sort, user])
 
     const fetchMyMarathonsList = async () => {
-        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/my-marathons/${user?.email}`)
+        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/my-marathons/${user?.email}?sort=${sort}`)
         setMarathonsList(data);
         console.log(marathonsList);
     }

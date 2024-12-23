@@ -49,7 +49,7 @@ const MarathonDetails = () => {
                 <div className="hero-content flex-col lg:flex-row gap-5">
                     <div className="lg:w-1/2 border border-gray-500">
                         <img
-                            src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+                            src={image}
                             className=" rounded-lg w-full" />
                     </div>
                     <div>

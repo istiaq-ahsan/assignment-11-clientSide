@@ -14,6 +14,7 @@ const AddMarathon = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [marathonDate, setMarathonDate] = useState(new Date());
+    const [createdDate, setCreatedDate] = useState(new Date());
 
     const handleAddMarathon = async (e) => {
         e.preventDefault();
@@ -145,8 +146,9 @@ const AddMarathon = () => {
                                 <DatePicker
                                     className="input input-bordered w-full"
                                     name='createdAt'
-                                    selected={new Date()}
-                                    readOnly
+                                    selected={createdDate}
+                                    onChange={(date) => setCreatedDate(date)}
+                                // readOnly
 
                                 />
                             </div>
