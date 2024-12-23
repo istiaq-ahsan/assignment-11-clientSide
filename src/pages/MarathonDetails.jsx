@@ -23,7 +23,8 @@ const MarathonDetails = () => {
         location,
         distance,
         description,
-        image
+        image,
+        reg_count
     } = marathon || {}
 
     const fetchMarathonDetails = async () => {
@@ -65,7 +66,7 @@ const MarathonDetails = () => {
                         <p className="py-6">
                             {description}
                         </p>
-                        <h2>Total Registration Count : </h2>
+                        <h2>Total Registration Count : {reg_count}</h2>
                         <button onClick={handleGoReg} className="btn btn-neutral">Registration</button >
                     </div>
                 </div>

@@ -44,7 +44,8 @@ const AddMarathon = () => {
             location,
             distance,
             description,
-            image
+            image,
+            reg_count: 0,
         }
         console.log(formData);
         try {
