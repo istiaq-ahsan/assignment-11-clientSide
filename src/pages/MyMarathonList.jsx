@@ -37,7 +37,7 @@ const MyMarathonList = () => {
 
     return (
         <section className='container px-4 mx-auto pt-12'>
-            <div className="flex justify-between">
+            <div className="flex flex-col md:flex-row md:justify-between gap-5 md:gap-0">
                 <div className='flex items-center gap-x-3'>
                     <h2 className='text-lg font-medium text-gray-800 '>My Posted Jobs
 
@@ -45,7 +45,7 @@ const MyMarathonList = () => {
                             {marathonsList.length}
                         </span></h2>
                 </div>
-                <div>
+                <div className="mx-auto md:mx-0">
                     <select
                         name='category'
                         id='category'

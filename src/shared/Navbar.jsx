@@ -27,16 +27,13 @@ const Navbar = () => {
             )}
 
             {user && user.email ? (
-
-                <li>
-                    <Link to='/login'><button onClick={logOut}>Logout</button></Link>
-
-                </li>
-
+                <Link to='/login' onClick={logOut}
+                    className="btn btn-ghost hover:bg-stone-500">Logout
+                </Link>
             ) : (
-                <li className="hover:bg-stone-500 hover:text-white">
-                    <Link to='/login'>Login</Link>
-                </li>
+                <Link to='/login'
+                    className="btn btn-ghost hover:bg-stone-500">Login
+                </Link>
             )}
         </>
     )
@@ -99,7 +96,7 @@ const Navbar = () => {
 
                     </div>
                 ) : (
-                    <Link to='/register' className="btn btn-ghost font-normal hover:bg-stone-500 hover:text-white"><button>Register</button></Link>
+                    <Link to='/register' className="btn btn-ghost text-white font-normal hover:bg-stone-500 hover:text-white"><button>Register</button></Link>
                 )}
             </div>
 

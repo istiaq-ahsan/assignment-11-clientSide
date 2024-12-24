@@ -1,4 +1,3 @@
-import { format } from "date-fns";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { Link } from "react-router-dom";
 
@@ -8,7 +7,8 @@ const SixMarathonCard = ({ marathon }) => {
     const startDate = new Date(marathonStartDate);
 
     return (
-        <div className="card shadow-xl border border-gray-300 h-auto w-80">
+        <div className="card bg-green-100 shadow-xl border border-gray-300 
+        h-auto w-80 hover:scale-[1.05] transition-all">
             <div className="h-[50%] p-3">
                 <figure>
                     <img className="h-[200px] w-full rounded-xl"

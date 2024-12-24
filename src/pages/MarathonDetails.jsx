@@ -44,7 +44,7 @@ const MarathonDetails = () => {
     }
 
     return (
-        <div className="py-20">
+        <div className="py-12">
             <div className="hero">
                 <div className="hero-content flex-col lg:flex-row space-x-5">
                     <div className="lg:w-1/2">
@@ -54,7 +54,7 @@ const MarathonDetails = () => {
                     </div>
                     <div>
                         <h1 className="text-5xl font-bold text-center">{title}</h1>
-                        <div className="flex justify-between mt-10">
+                        <div className="flex flex-col md:flex-row md:justify-between gap-4 mt-10">
                             <h2 className="text-lg font-medium">Start Registration :
                                 <span className="font-semibold badge badge-outline p-3 ml-2">
                                     {startRegistration ? format(new Date(startRegistration), "P") : "TBA"}
@@ -66,7 +66,7 @@ const MarathonDetails = () => {
                                 </span>
                             </h2>
                         </div>
-                        <h2 className="text-lg font-medium my-5 text-center">Marathon Start :
+                        <h2 className="text-lg font-medium my-5 text-left md:text-center">Marathon Start :
                             <span className="font-semibold badge badge-outline p-3 ml-2">
                                 {marathonStartDate ? format(new Date(marathonStartDate), "P") : "TBA"}
                             </span>

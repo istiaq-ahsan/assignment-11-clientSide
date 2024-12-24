@@ -19,7 +19,7 @@ const SixMarathon = () => {
     }
 
     return (
-        <div>
+        <div className="py-20">
             <div className="text-center">
                 <h1 className="text-5xl font-bold">Explore Our Events</h1>
                 <p className="text-base my-10 w-4/5 mx-auto">

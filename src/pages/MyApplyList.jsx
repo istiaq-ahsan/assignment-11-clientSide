@@ -36,7 +36,7 @@ const MyApplyList = () => {
 
     return (
         <section className='container px-4 mx-auto pt-12'>
-            <div className="flex justify-between">
+            <div className="flex flex-col gap-5 md:gap-0 md:flex-row md:justify-between">
                 <div className='flex items-center gap-x-3'>
                     <h2 className='text-lg font-medium text-gray-800 '>
                         My Applied Marathon<span className='px-3 py-2 border border-blue-500 text-xs ml-3 text-blue-900 bg-blue-100 rounded-full '>

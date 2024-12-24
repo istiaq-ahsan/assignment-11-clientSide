@@ -6,7 +6,7 @@ const MarathonsCard = ({ marathon }) => {
     const { _id, title, image, startRegistration, endRegistration } = marathon || {}
 
     return (
-        <div className="card bg-base-100 shadow-xl">
+        <div className="card bg-green-100 shadow-xl hover:scale-[1.05] transition-all">
             <div className='p-3'>
                 <figure>
                     <img className='rounded-xl h-[220px] w-full'

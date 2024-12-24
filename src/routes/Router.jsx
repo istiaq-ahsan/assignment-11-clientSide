@@ -49,7 +49,9 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/addMarathon",
-                element: <AddMarathon></AddMarathon>
+                element: <PrivateRouter>
+                    <AddMarathon></AddMarathon>
+                </PrivateRouter>
             },
             {
                 path: "/myMarathonList",
