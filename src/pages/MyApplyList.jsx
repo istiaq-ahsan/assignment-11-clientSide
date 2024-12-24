@@ -4,6 +4,7 @@ import axios from "axios";
 import ApplyListTable from "../components/ApplyListTable";
 import { toast } from "react-toastify";
 
+
 const MyApplyList = () => {
 
     const { user } = useContext(AuthContext);
@@ -38,27 +39,37 @@ const MyApplyList = () => {
             <div className="flex justify-between">
                 <div className='flex items-center gap-x-3'>
                     <h2 className='text-lg font-medium text-gray-800 '>
-                        My Applied Marathon<span className='px-4 py-2 text-xs ml-3 text-blue-600 bg-blue-100 rounded-full '>
+                        My Applied Marathon<span className='px-3 py-2 border border-blue-500 text-xs ml-3 text-blue-900 bg-blue-100 rounded-full '>
                             {applyList.length}
                         </span></h2>
                 </div>
 
 
-                <div className='flex flex-col md:flex-row justify-center items-center gap-5 '>
+                <div className='flex flex-col md:flex-row 
+                justify-center items-center gap-5 '>
 
-                    <div className='flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300'>
+                    <div className='flex p-1 overflow-hidden border bg-white
+                    rounded-lg focus-within:ring focus-within:ring-opacity-40
+                     focus-within:border-blue-400 focus-within:ring-blue-300'>
                         <input
-                            className='px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent'
+                            className='px-6 py-3 text-gray-700 placeholder-gray-500
+                             bg-white outline-none focus:placeholder-transparent'
                             type='text'
                             name='search'
                             onChange={e => setSearch(e.target.value)}
                             value={search}
                             placeholder='Enter Marathon Title'
                             aria-label='Enter Marathon Title'
+
                         />
 
-                        <button className='p-2 text-xs font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none'>
-                            Search
+                        <button onClick={() => setSearch('')}
+                            className='p-4 rounded-md text-xs 
+                        font-medium tracking-wider text-gray-100 
+                        uppercase transition-colors duration-300 
+                        transform bg-gray-700 hover:bg-gray-500
+                         focus:bg-gray-600 focus:outline-none'>
+                            Reset
                         </button>
                     </div>
                 </div>

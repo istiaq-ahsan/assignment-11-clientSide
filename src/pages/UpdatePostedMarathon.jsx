@@ -77,7 +77,7 @@ const UpdatePostedMarathon = () => {
     }
 
     return (
-        <div>
+        <div className="py-16">
             <div className="w-11/12 md:w-4/5 mx-auto">
                 <div className="text-center text-gray-900">
                     <h1 className="text-5xl font-bold">Update Marathon Info</h1>

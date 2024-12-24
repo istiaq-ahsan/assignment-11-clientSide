@@ -8,6 +8,7 @@ const AllMarathons = () => {
 
     useEffect(() => {
         fetchAllMarathons()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const fetchAllMarathons = async () => {
@@ -17,7 +18,7 @@ const AllMarathons = () => {
     }
 
     return (
-        <div>
+        <div className="py-16">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-4/5 mx-auto">
                 {
                     marathons.map((marathon, index) => <MarathonsCard

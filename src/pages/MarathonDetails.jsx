@@ -44,34 +44,49 @@ const MarathonDetails = () => {
     }
 
     return (
-        <div>
-            <div className="hero bg-base-200 border border-gray-500">
-                <div className="hero-content flex-col lg:flex-row gap-5">
-                    <div className="lg:w-1/2 border border-gray-500">
+        <div className="py-20">
+            <div className="hero">
+                <div className="hero-content flex-col lg:flex-row space-x-5">
+                    <div className="lg:w-1/2">
                         <img
                             src={image}
                             className=" rounded-lg w-full" />
                     </div>
                     <div>
-                        <h1 className="text-5xl font-bold">{title}</h1>
-                        <h2>Start Registration : {startRegistration ? format(new Date(startRegistration), "P") : "TBA"}
+                        <h1 className="text-5xl font-bold text-center">{title}</h1>
+                        <div className="flex justify-between mt-10">
+                            <h2 className="text-lg font-medium">Start Registration :
+                                <span className="font-semibold badge badge-outline p-3 ml-2">
+                                    {startRegistration ? format(new Date(startRegistration), "P") : "TBA"}
+                                </span>
+                            </h2>
+                            <h2 className="text-lg font-medium text-red-600">End Registration :
+                                <span className="font-semibold badge badge-outline p-3 ml-2">
+                                    {endRegistration ? format(new Date(endRegistration), "P") : "TBA"}
+                                </span>
+                            </h2>
+                        </div>
+                        <h2 className="text-lg font-medium my-5 text-center">Marathon Start :
+                            <span className="font-semibold badge badge-outline p-3 ml-2">
+                                {marathonStartDate ? format(new Date(marathonStartDate), "P") : "TBA"}
+                            </span>
                         </h2>
-                        <h2>End Registration : {endRegistration ? format(new Date(endRegistration), "P") : "TBA"}
-                        </h2>
-                        <h2>Marathon Start : {marathonStartDate ? format(new Date(marathonStartDate), "P") : "TBA"}
-                        </h2>
-                        <h3>Location: {location}</h3>
-                        <h3>Distance: {distance}</h3>
 
-                        <p className="py-6">
-                            {description}
-                        </p>
-                        <h2>Total Registration Count : {reg_count}</h2>
-                        <button onClick={handleGoReg} className="btn btn-neutral">Registration</button >
-                    </div>
-                </div>
-            </div>
-        </div>
+
+                        <div className="font-medium space-y-2 my-2">
+                            <h3>Location: <span className="font-bold">{location}</span></h3>
+                            <h3>Distance: <span className="font-bold">{distance}</span></h3>
+                            <p className="">Description : <span className="font-bold">{description}</span></p>
+                            <h2>Total Registration Count : <span className="font-bold">{reg_count}</span></h2>
+                        </div >
+                        <div className="text-center mt-5">
+                            <button onClick={handleGoReg} className="btn btn-neutral">Registration</button >
+
+                        </div>
+                    </div >
+                </div >
+            </div >
+        </div >
     );
 };
 

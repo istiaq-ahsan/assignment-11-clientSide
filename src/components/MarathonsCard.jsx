@@ -7,11 +7,13 @@ const MarathonsCard = ({ marathon }) => {
 
     return (
         <div className="card bg-base-100 shadow-xl">
-            <figure>
-                <img
-                    src={image}
-                    alt="Shoes" />
-            </figure>
+            <div className='p-3'>
+                <figure>
+                    <img className='rounded-xl h-[220px] w-full'
+                        src={image}
+                        alt="Shoes" />
+                </figure>
+            </div>
             <div className="card-body">
                 <h2 className="card-title">{title}</h2>
                 <p>Start Registration: {format(new Date(startRegistration), 'P')}</p>

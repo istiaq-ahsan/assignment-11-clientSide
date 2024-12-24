@@ -6,46 +6,80 @@ const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext);
 
+    const menuItems = (
+        <>
+
+            <NavLink to="/allMarathons" className={({ isActive }) =>
+                isActive ? "text-yellow-500 font-semibold" : "text-white"
+            }>Marathons</NavLink>
+            {user && (
+                <>
+                    <NavLink to="/addMarathon" className={({ isActive }) =>
+                        isActive ? "text-yellow-500 font-semibold" : "text-white"
+                    }>Add Marathon</NavLink>
+                    <NavLink to="/myMarathonList" className={({ isActive }) =>
+                        isActive ? "text-yellow-500 font-semibold" : "text-white"
+                    }>My Marathon List</NavLink>
+                    <NavLink to="/myApplyList" className={({ isActive }) =>
+                        isActive ? "text-yellow-500 font-semibold" : "text-white"
+                    }>My Apply List</NavLink>
+                </>
+            )}
+
+            {user && user.email ? (
+
+                <li>
+                    <Link to='/login'><button onClick={logOut}>Logout</button></Link>
+
+                </li>
+
+            ) : (
+                <li className="hover:bg-stone-500 hover:text-white">
+                    <Link to='/login'>Login</Link>
+                </li>
+            )}
+        </>
+    )
+
     return (
-        <div className='navbar fixed top-0 z-50 bg-base-100 shadow-sm  px-4'>
-            <div className='flex-1'>
+        <div className='navbar fixed top-0 z-50 bg-stone-800 text-white shadow-sm  px-4'>
+            <div className="navbar-start lg:hidden">
+                <div className="dropdown">
+                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M4 6h16M4 12h8m-8 6h16" />
+                        </svg>
+                    </div>
+                    <ul
+                        tabIndex={0}
+                        className="menu menu-sm dropdown-content 
+                        bg-gray-800 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                        {menuItems}
+                    </ul>
+                </div>
+
+
+            </div>
+            <div className='flex-1 pr-24 lg:pr-0'>
                 <Link to='/' className='flex gap-2 items-center'>
-                    <img className='w-auto h-7' src="" alt='' />
                     <span className='font-bold'>SprintSphere</span>
                 </Link>
             </div>
-            <div className='flex-none items-center'>
-                <ul className='menu menu-horizontal px-1 flex items-center'>
-                    <li>
-                        <Link to='/allMarathons'>Marathons</Link>
-                    </li>
-                    {user && (
-                        <>
-                            <li>
-                                <Link to='/addMarathon'>Add Marathon</Link>
-                            </li>
-                            <li>
-                                <Link to='/myMarathonList'>My Marathon List</Link>
-                            </li>
-                            <li>
-                                <Link to='/myApplyList'>My Apply List</Link>
-                            </li>
-                        </>
-                    )}
-
-                    {user && user.email ? (
-
-                        <li>
-                            <Link to='/login'><button onClick={logOut}>Logout</button></Link>
-
-                        </li>
-
-                    ) : (
-                        <li>
-                            <Link to='/login'>Login</Link>
-                        </li>
-                    )}
-                </ul>
+            <div className='lg:flex items-center'>
+                <div className='lg:flex hidden'>
+                    <ul className='menu menu-horizontal px-1 flex items-center gap-5'>
+                        {menuItems}
+                    </ul>
+                </div>
 
                 {user && user.email ? (
                     <div className='dropdown dropdown-end z-50'>
@@ -65,9 +99,12 @@ const Navbar = () => {
 
                     </div>
                 ) : (
-                    <Link to='/register' className="btn btn-ghost"><button>Register</button></Link>
+                    <Link to='/register' className="btn btn-ghost font-normal hover:bg-stone-500 hover:text-white"><button>Register</button></Link>
                 )}
             </div>
+
+
+
         </div>
     );
 };

@@ -71,12 +71,12 @@ const UpdateApplyInfo = () => {
     }
 
     return (
-        <div>
+        <div className="py-16">
             <div className="w-11/12 md:w-4/5 mx-auto">
                 <div className="text-center text-gray-900">
-                    <h1 className="text-5xl font-bold"> Update Form</h1>
+                    <h1 className="text-5xl font-bold"> Update Your Info</h1>
                     <p className="text-base my-5">
-                        Provide the details of your marathon to share it with participants. Fill in all fields to ensure clarity and accuracy.
+                        Provide the details of yourself to share it with Organizer. Fill in all fields to ensure clarity and accuracy.
                     </p>
                 </div>
                 <div className="card bg-base-100 w-full shrink-0 shadow-2xl">

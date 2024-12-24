@@ -41,7 +41,7 @@ const MyMarathonList = () => {
                 <div className='flex items-center gap-x-3'>
                     <h2 className='text-lg font-medium text-gray-800 '>My Posted Jobs
 
-                        <span className='px-3 py-1 ml-2 text-xs text-blue-600 bg-blue-100 rounded-full '>
+                        <span className='px-3 py-2 border border-blue-500 ml-2 text-xs text-blue-900 bg-blue-100 rounded-full '>
                             {marathonsList.length}
                         </span></h2>
                 </div>
