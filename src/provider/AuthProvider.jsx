@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
                 const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`,
                     { email: currentUser?.email }, { withCredentials: true })
 
-                console.log(data);
+
             } else {
                 setUser(currentUser)
                 const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/logout`,

@@ -22,11 +22,11 @@ const MyApplyList = () => {
     const fetchMyApplyList = async () => {
         const { data } = await axiosSecure.get(`/my-apply/${user?.email}?search=${search}`)
         setApplyList(data);
-        console.log(applyList);
+
     }
 
     const handleDelete = async (id) => {
-        console.log(id);
+
         try {
             const { data } = await axiosSecure.delete(`/applyInfo/${id}`)
             toast.success("Deleted Successfully")

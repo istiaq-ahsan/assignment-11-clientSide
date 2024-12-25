@@ -20,7 +20,7 @@ const MarathonReg = () => {
     const fetchMarathonInfo = async () => {
         const { data } = await axiosSecure.get(`/marathon-details/${id}`)
         setMarathonInfo(data);
-        console.log(MarathonInfo);
+
     }
 
     const { title,
@@ -57,13 +57,13 @@ const MarathonReg = () => {
             marathonStartDate,
             organizer: creator?.email,
         }
-        console.log(formData);
+
         try {
             await axiosSecure.post(`/marathon-reg`, formData)
             toast.success("Marathon Added Successfully");
             navigate("/myApplyList");
         } catch (err) {
-            console.log(err.message);
+
             toast.error(err.message);
         }
     }

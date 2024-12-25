@@ -34,7 +34,7 @@ const UpdatePostedMarathon = () => {
         setStartDate(data.startRegistration);
         setEndDate(data.endRegistration);
         setMarathonDate(data.marathonStartDate);
-        console.log(marathonInfo);
+
     }
 
     const handleUpdateMarathon = async (e) => {
@@ -66,13 +66,13 @@ const UpdatePostedMarathon = () => {
             description,
             image
         }
-        console.log(formData);
+
         try {
             await axiosSecure.put(`/update-marathonInfo/${id}`, formData)
             toast.success("Update Information Successfully");
             navigate("/myMarathonList");
         } catch (err) {
-            console.log(err.message);
+
             toast.error(err.message);
         }
     }

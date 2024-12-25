@@ -15,7 +15,7 @@ const SixMarathon = () => {
     const fetchSixMarathon = async () => {
         const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/six-marathons`, sixMarathon)
         setSixMarathon(data);
-        console.log(data);
+
     }
 
     return (
@@ -28,7 +28,7 @@ const SixMarathon = () => {
                     our events cater to all levels.
                 </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-4/5 mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-11/12 mx-auto">
                 {
                     sixMarathon.map((marathon, index) => <SixMarathonCard
                         key={index}

@@ -20,7 +20,7 @@ const UpComingMarathon = () => {
 
         setUpcomingMarathons(runningMarathons.slice(0, 6));
 
-        console.log(upcomingMarathons);
+
     }
 
     return (
@@ -35,7 +35,7 @@ const UpComingMarathon = () => {
             </div>
 
 
-            <div className="flex overflow-x-auto gap-5 px-2">
+            <div className="flex overflow-x-auto gap-5 px-2 w-11/12 mx-auto">
                 {
                     upcomingMarathons.map((upcomingMarathon, index) => <UpcomingMarathonCard
                         key={index}

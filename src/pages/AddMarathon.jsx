@@ -48,13 +48,13 @@ const AddMarathon = () => {
             image,
             reg_count: 0,
         }
-        console.log(formData);
+
         try {
             await axios.post(`${import.meta.env.VITE_API_URL}/add-marathon`, formData)
             toast.success("Marathon Added Successfully");
             navigate("/myMarathonList");
         } catch (err) {
-            console.log(err.message);
+
             toast.error(err.message);
         }
     }

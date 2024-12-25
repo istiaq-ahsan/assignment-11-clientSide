@@ -20,11 +20,11 @@ const MyMarathonList = () => {
     const fetchMyMarathonsList = async () => {
         const { data } = await axiosSecure.get(`/my-marathons/${user?.email}?sort=${sort}`)
         setMarathonsList(data);
-        console.log(marathonsList);
+
     }
 
     const handleDelete = async (id) => {
-        console.log(id);
+
         try {
             const { data } = await axiosSecure.delete(`/postedMarathon/${id}`)
             toast.success("Deleted Successfully")

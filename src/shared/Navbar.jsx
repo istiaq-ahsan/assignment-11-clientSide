@@ -28,11 +28,11 @@ const Navbar = () => {
 
             {user && user.email ? (
                 <Link to='/login' onClick={logOut}
-                    className="btn btn-ghost hover:bg-stone-500">Logout
+                    className="btn btn-ghost hover:bg-stone-500 font-normal">Logout
                 </Link>
             ) : (
                 <Link to='/login'
-                    className="btn btn-ghost hover:bg-stone-500">Login
+                    className="btn btn-ghost hover:bg-stone-500 font-normal">Login
                 </Link>
             )}
         </>

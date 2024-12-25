@@ -6,7 +6,7 @@ const UpcomingMarathonCard = ({ upcomingMarathon }) => {
 
 
     return (
-        <div className="w-11/12 mx-auto hover:scale-[1.05] transition-all">
+        <div className="w-11/12 mx-auto py-2 hover:scale-[1.05] transition-all">
             <div className="rounded-2xl bg-base-100 shadow-xl border border-gray-300 gap-3
             flex flex-col md:flex-row items-center h-[350px] md:h-[200px] w-[300px] md:w-[440px]">
                 <div className="md:w-1/2">

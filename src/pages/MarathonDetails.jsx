@@ -31,7 +31,7 @@ const MarathonDetails = () => {
     const fetchMarathonDetails = async () => {
         const { data } = await axiosSecure.get(`/marathon-details/${id}`)
         setMarathon(data);
-        console.log(marathon);
+
     }
 
     const handleGoReg = () => {

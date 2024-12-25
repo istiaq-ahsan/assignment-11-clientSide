@@ -31,7 +31,7 @@ const UpdateApplyInfo = () => {
     const fetchApplyInfo = async () => {
         const { data } = await axiosSecure.get(`/applyInfo/${id}`)
         setApplyInfo(data);
-        console.log(applyInfo);
+
     }
 
     const handleUpdateMarathon = async (e) => {
@@ -59,14 +59,14 @@ const UpdateApplyInfo = () => {
             additionalInfo,
         }
 
-        console.log(formData);
+
 
         try {
             await axiosSecure.put(`/update-applyInfo/${id}`, formData)
             toast.success("Update Information Successfully");
             navigate("/myApplyList");
         } catch (err) {
-            console.log(err.message);
+
             toast.error(err.message);
         }
     }

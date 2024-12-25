@@ -7,8 +7,8 @@ const SixMarathonCard = ({ marathon }) => {
     const startDate = new Date(marathonStartDate);
 
     return (
-        <div className="card bg-green-100 shadow-xl border border-gray-300 
-        h-auto w-80 hover:scale-[1.05] transition-all">
+        <div className="card bg-green-100 shadow-xl border border-gray-300 hover:scale-[1.05] transition-all
+        h-auto md:w-80 w-80 mx-auto">
             <div className="h-[50%] p-3">
                 <figure>
                     <img className="h-[200px] w-full rounded-xl"

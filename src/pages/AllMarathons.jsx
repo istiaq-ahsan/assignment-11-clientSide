@@ -27,7 +27,7 @@ const AllMarathons = () => {
     const fetchAllMarathons = async () => {
         const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/all-marathons?sort=${sort}&search=${search}`, marathons)
         setMarathons(data);
-        console.log(data);
+
     }
 
     return (
