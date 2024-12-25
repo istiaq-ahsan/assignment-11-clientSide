@@ -4,8 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../provider/AuthProvider";
 import DatePicker from "react-datepicker";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const MarathonReg = () => {
+    const axiosSecure = useAxiosSecure();
     const { user } = useContext(AuthContext);
     const [MarathonInfo, setMarathonInfo] = useState({});
     const { id } = useParams();
@@ -16,7 +18,7 @@ const MarathonReg = () => {
     }, [id])
 
     const fetchMarathonInfo = async () => {
-        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/marathon-details/${id}`)
+        const { data } = await axiosSecure.get(`/marathon-details/${id}`)
         setMarathonInfo(data);
         console.log(MarathonInfo);
     }
@@ -57,7 +59,7 @@ const MarathonReg = () => {
         }
         console.log(formData);
         try {
-            await axios.post(`${import.meta.env.VITE_API_URL}/marathon-reg`, formData)
+            await axiosSecure.post(`/marathon-reg`, formData)
             toast.success("Marathon Added Successfully");
             navigate("/myApplyList");
         } catch (err) {

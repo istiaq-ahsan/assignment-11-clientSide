@@ -3,10 +3,11 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import MarathonListTable from "../components/MarathonListTable";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 
 const MyMarathonList = () => {
-
+    const axiosSecure = useAxiosSecure();
     const { user } = useContext(AuthContext);
     const [marathonsList, setMarathonsList] = useState([]);
     const [sort, setSort] = useState('');
@@ -17,7 +18,7 @@ const MyMarathonList = () => {
     }, [sort, user])
 
     const fetchMyMarathonsList = async () => {
-        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/my-marathons/${user?.email}?sort=${sort}`)
+        const { data } = await axiosSecure.get(`/my-marathons/${user?.email}?sort=${sort}`)
         setMarathonsList(data);
         console.log(marathonsList);
     }
@@ -25,7 +26,7 @@ const MyMarathonList = () => {
     const handleDelete = async (id) => {
         console.log(id);
         try {
-            const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/postedMarathon/${id}`)
+            const { data } = await axiosSecure.delete(`/postedMarathon/${id}`)
             toast.success("Deleted Successfully")
             fetchMyMarathonsList();
         } catch (err) {
@@ -36,12 +37,14 @@ const MyMarathonList = () => {
 
 
     return (
-        <section className='container px-4 mx-auto pt-12'>
+        <section className='container md:px-4 mx-auto pt-12'>
             <div className="flex flex-col md:flex-row md:justify-between gap-5 md:gap-0">
-                <div className='flex items-center gap-x-3'>
-                    <h2 className='text-lg font-medium text-gray-800 '>My Posted Jobs
+                <div className='flex items-center gap-x-3 mx-auto md:mx-0'>
+                    <h2 className='text-lg font-medium text-gray-800'>
+                        My Posted Marathons
 
-                        <span className='px-3 py-2 border border-blue-500 ml-2 text-xs text-blue-900 bg-blue-100 rounded-full '>
+                        <span className='px-3 py-2 border border-blue-500 ml-2 
+                        text-xs text-blue-900 bg-blue-100 rounded-full '>
                             {marathonsList.length}
                         </span></h2>
                 </div>
@@ -53,7 +56,7 @@ const MyMarathonList = () => {
                         value={sort}
                         className='py-3 px-2 border rounded-md'
                     >
-                        <option value=''>Sort By Deadline</option>
+                        <option value=''>Sort By CreatedAt</option>
                         <option value='dsc'>Descending Order</option>
                         <option value='asc'>Ascending Order</option>
                     </select>

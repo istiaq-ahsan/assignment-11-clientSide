@@ -4,9 +4,10 @@ import { AuthContext } from "../provider/AuthProvider";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const UpdateApplyInfo = () => {
-
+    const axiosSecure = useAxiosSecure();
     const { user } = useContext(AuthContext);
     const { id } = useParams();
     const [applyInfo, setApplyInfo] = useState({});
@@ -28,7 +29,7 @@ const UpdateApplyInfo = () => {
     } = applyInfo || {}
 
     const fetchApplyInfo = async () => {
-        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/applyInfo/${id}`)
+        const { data } = await axiosSecure.get(`/applyInfo/${id}`)
         setApplyInfo(data);
         console.log(applyInfo);
     }
@@ -61,7 +62,7 @@ const UpdateApplyInfo = () => {
         console.log(formData);
 
         try {
-            await axios.put(`${import.meta.env.VITE_API_URL}/update-applyInfo/${id}`, formData)
+            await axiosSecure.put(`/update-applyInfo/${id}`, formData)
             toast.success("Update Information Successfully");
             navigate("/myApplyList");
         } catch (err) {

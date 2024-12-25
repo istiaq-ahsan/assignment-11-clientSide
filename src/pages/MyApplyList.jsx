@@ -3,9 +3,11 @@ import { AuthContext } from "../provider/AuthProvider";
 import axios from "axios";
 import ApplyListTable from "../components/ApplyListTable";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 
 const MyApplyList = () => {
+    const axiosSecure = useAxiosSecure();
 
     const { user } = useContext(AuthContext);
     const [applyList, setApplyList] = useState([]);
@@ -18,7 +20,7 @@ const MyApplyList = () => {
     }, [search, user])
 
     const fetchMyApplyList = async () => {
-        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/my-apply/${user?.email}?search=${search}`)
+        const { data } = await axiosSecure.get(`/my-apply/${user?.email}?search=${search}`)
         setApplyList(data);
         console.log(applyList);
     }
@@ -26,7 +28,7 @@ const MyApplyList = () => {
     const handleDelete = async (id) => {
         console.log(id);
         try {
-            const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/applyInfo/${id}`)
+            const { data } = await axiosSecure.delete(`/applyInfo/${id}`)
             toast.success("Deleted Successfully")
             fetchMyApplyList();
         } catch (err) {
@@ -37,7 +39,7 @@ const MyApplyList = () => {
     return (
         <section className='container px-4 mx-auto pt-12'>
             <div className="flex flex-col gap-5 md:gap-0 md:flex-row md:justify-between">
-                <div className='flex items-center gap-x-3'>
+                <div className='flex items-center gap-x-3 mx-auto md:mx-0'>
                     <h2 className='text-lg font-medium text-gray-800 '>
                         My Applied Marathon<span className='px-3 py-2 border border-blue-500 text-xs ml-3 text-blue-900 bg-blue-100 rounded-full '>
                             {applyList.length}
@@ -48,7 +50,7 @@ const MyApplyList = () => {
                 <div className='flex flex-col md:flex-row 
                 justify-center items-center gap-5 '>
 
-                    <div className='flex p-1 overflow-hidden border bg-white
+                    <div className='flex overflow-hidden border bg-white
                     rounded-lg focus-within:ring focus-within:ring-opacity-40
                      focus-within:border-blue-400 focus-within:ring-blue-300'>
                         <input
@@ -64,7 +66,7 @@ const MyApplyList = () => {
                         />
 
                         <button onClick={() => setSearch('')}
-                            className='p-4 rounded-md text-xs 
+                            className='px-4 m-1 rounded-md text-xs 
                         font-medium tracking-wider text-gray-100 
                         uppercase transition-colors duration-300 
                         transform bg-gray-700 hover:bg-gray-500

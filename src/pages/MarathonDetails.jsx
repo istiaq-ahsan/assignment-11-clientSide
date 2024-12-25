@@ -3,9 +3,10 @@ import { compareAsc, format } from "date-fns";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const MarathonDetails = () => {
-
+    const axiosSecure = useAxiosSecure();
     const { id } = useParams();
     const [marathon, setMarathon] = useState({});
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ const MarathonDetails = () => {
     } = marathon || {}
 
     const fetchMarathonDetails = async () => {
-        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/marathon-details/${id}`)
+        const { data } = await axiosSecure.get(`/marathon-details/${id}`)
         setMarathon(data);
         console.log(marathon);
     }
