@@ -4,10 +4,14 @@ import Faq from "../components/HomeComponents/Faq";
 import SixMarathon from "../components/HomeComponents/SixMarathon";
 import UpComingMarathon from "../components/HomeComponents/UpComingMarathon";
 import Welcome from "../components/HomeComponents/Welcome";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
     return (
         <div>
+            <Helmet>
+                <title>SprintSphere || Home</title>
+            </Helmet>
             <Banner></Banner>
             <Facilities></Facilities>
             <Welcome></Welcome>

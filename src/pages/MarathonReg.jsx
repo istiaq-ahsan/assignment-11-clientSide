@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { AuthContext } from "../provider/AuthProvider";
 import DatePicker from "react-datepicker";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const MarathonReg = () => {
     const axiosSecure = useAxiosSecure();
@@ -70,6 +71,9 @@ const MarathonReg = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>SprintSphere | Reg Form</title>
+            </Helmet>
             <div className="w-11/12 md:w-4/5 mx-auto py-12">
                 <div className="text-center text-gray-900">
                     <h1 className="text-4xl md:text-5xl font-bold">{title} Registration Form</h1>

@@ -10,6 +10,7 @@ const MarathonsCard = ({ marathon }) => {
             <div className='p-3'>
                 <figure>
                     <img className='rounded-xl h-[220px] w-full'
+                        referrerPolicy='no-referrer'
                         src={image}
                         alt="Shoes" />
                 </figure>

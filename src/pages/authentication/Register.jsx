@@ -1,12 +1,13 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import { toast } from "react-toastify";
 import loginImage from "../../assets/images/login2.jpeg"
-
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
-
+    const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState(null);
     const { createUser, updateUserProfile, signInWithGoogle, setUser } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -17,6 +18,12 @@ const Register = () => {
         const name = form.name.value
         const photo = form.photo.value
         const pass = form.password.value
+
+        let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        if (!passwordRegex.test(pass)) {
+            setError("Password must be at least 6 characters long, with at least one uppercase and one lowercase letter.")
+            return;
+        }
 
         try {
 
@@ -158,8 +165,11 @@ const Register = () => {
                                 autoComplete='current-password'
                                 name='password'
                                 className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
-                                type='password'
+                                type={showPassword ? 'text' : 'password'}
                             />
+                            <button onClick={() => setShowPassword(!showPassword)} className="btn btn-xs absolute ml-56 md:ml-[265px] lg:ml-[340px] -mt-8 z-50">
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </button>
                         </div>
                         <div className='mt-6'>
                             <button
@@ -170,6 +180,7 @@ const Register = () => {
                             </button>
                         </div>
                     </form>
+                    <p className="mt-2 text-red-700">{error}</p>
 
                     <div className='flex items-center justify-between mt-4'>
                         <span className='w-1/5 border-b  md:w-1/4'></span>

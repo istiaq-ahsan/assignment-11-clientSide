@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const MarathonDetails = () => {
     const axiosSecure = useAxiosSecure();
@@ -46,11 +47,15 @@ const MarathonDetails = () => {
 
     return (
         <div className="py-12">
+            <Helmet>
+                <title>SprintSphere | Details</title>
+            </Helmet>
             <div className="hero">
                 <div className="hero-content flex-col lg:flex-row space-x-5">
                     <div className="lg:w-1/2">
                         <img
                             src={image}
+                            referrerPolicy='no-referrer'
                             className=" rounded-lg w-full" />
                     </div>
                     <div>

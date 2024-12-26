@@ -4,7 +4,6 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { toast } from "react-toastify";
 
 import loginImage from "../../assets/images/login2.jpeg"
-import axios from "axios";
 
 const Login = () => {
 

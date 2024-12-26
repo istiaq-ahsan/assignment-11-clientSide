@@ -12,6 +12,7 @@ const UpcomingMarathonCard = ({ upcomingMarathon }) => {
                 <div className="md:w-1/2">
                     <figure>
                         <img className="p-2 md:h-[180px] w-full rounded-xl"
+                            referrerPolicy='no-referrer'
                             src={image}
                             alt="image" />
                     </figure>

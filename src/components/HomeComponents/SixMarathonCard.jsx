@@ -12,6 +12,7 @@ const SixMarathonCard = ({ marathon }) => {
             <div className="h-[50%] p-3">
                 <figure>
                     <img className="h-[200px] w-full rounded-xl"
+                        referrerPolicy='no-referrer'
                         src={image}
                         alt="Shoes" />
                 </figure>

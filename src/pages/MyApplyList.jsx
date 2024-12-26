@@ -4,6 +4,7 @@ import axios from "axios";
 import ApplyListTable from "../components/ApplyListTable";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 
 const MyApplyList = () => {
@@ -38,6 +39,9 @@ const MyApplyList = () => {
 
     return (
         <section className='container px-4 mx-auto pt-12'>
+            <Helmet>
+                <title>SprintSphere | My Apply</title>
+            </Helmet>
             <div className="flex flex-col gap-5 md:gap-0 md:flex-row md:justify-between">
                 <div className='flex items-center gap-x-3 mx-auto md:mx-0'>
                     <h2 className='text-lg font-medium text-gray-800 '>

@@ -5,6 +5,7 @@ import { AuthContext } from '../provider/AuthProvider';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 
 const AddMarathon = () => {
@@ -60,6 +61,9 @@ const AddMarathon = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>SprintSphere | Add Marathon</title>
+            </Helmet>
             <div className="w-11/12 md:w-4/5 mx-auto py-16">
                 <div className="text-center text-gray-900">
                     <h1 className="text-5xl font-bold">Create a New Marathon</h1>

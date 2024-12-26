@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import MarathonsCard from "../components/marathonsCard";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
 
 const AllMarathons = () => {
 
@@ -32,6 +33,9 @@ const AllMarathons = () => {
 
     return (
         <div className="py-12">
+            <Helmet>
+                <title>SprintSphere | All Marathon</title>
+            </Helmet>
             <div className="flex flex-col md:flex-row-reverse justify-center items-center gap-5 pb-10">
                 <div className='flex overflow-hidden border bg-white
                     rounded-lg focus-within:ring focus-within:ring-opacity-40

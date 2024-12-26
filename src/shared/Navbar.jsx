@@ -79,7 +79,7 @@ const Navbar = () => {
                 </div>
 
                 {user && user.email ? (
-                    <div className='dropdown dropdown-end z-50'>
+                    <Link to="/dashboard">
                         <div
                             tabIndex={0}
                             role='button'
@@ -94,7 +94,7 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                    </div>
+                    </Link>
                 ) : (
                     <Link to='/register' className="btn btn-ghost text-white font-normal hover:bg-stone-500 hover:text-white"><button>Register</button></Link>
                 )}

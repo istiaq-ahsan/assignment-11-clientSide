@@ -4,6 +4,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import MarathonListTable from "../components/MarathonListTable";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 
 const MyMarathonList = () => {
@@ -38,6 +39,9 @@ const MyMarathonList = () => {
 
     return (
         <section className='container md:px-4 mx-auto pt-12'>
+            <Helmet>
+                <title>SprintSphere | My Marathon</title>
+            </Helmet>
             <div className="flex flex-col md:flex-row md:justify-between gap-5 md:gap-0">
                 <div className='flex items-center gap-x-3 mx-auto md:mx-0'>
                     <h2 className='text-lg font-medium text-gray-800'>

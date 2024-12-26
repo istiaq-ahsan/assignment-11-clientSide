@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const UpdateApplyInfo = () => {
     const axiosSecure = useAxiosSecure();
@@ -73,6 +74,9 @@ const UpdateApplyInfo = () => {
 
     return (
         <div className="py-12">
+            <Helmet>
+                <title>SprintSphere | Update Apply</title>
+            </Helmet>
             <div className="w-11/12 md:w-4/5 mx-auto">
                 <div className="text-center text-gray-900">
                     <h1 className="text-4xl md:text-5xl font-bold"> Update Your Info</h1>
