@@ -65,7 +65,7 @@ SprintSphere enables users to organize and participate in marathon events effort
 ---
 
 ## 🖥️ Live Link to the Deployed Project
-[Visit SprintSphere Live Site]()
+[Visit SprintSphere Live Site](https://assignment-11-project-68d98.web.app)
 
 ---
 

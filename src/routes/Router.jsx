@@ -13,6 +13,7 @@ import MarathonReg from "../pages/MarathonReg";
 import UpdateApplyInfo from "../pages/UpdateApplyInfo";
 import UpdatePostedMarathon from "../pages/UpdatePostedMarathon";
 import Dashboard from "../pages/Dashboard";
+import Error from "../pages/Error";
 
 
 const Router = createBrowserRouter([
@@ -80,10 +81,16 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/dashboard",
-                element: <Dashboard></Dashboard>
+                element: <PrivateRouter>
+                    <Dashboard></Dashboard>
+                </PrivateRouter>
             },
         ]
-    }
+    },
+    {
+        path: "*",
+        element: <Error></Error>
+    },
 ])
 
 export default Router;
